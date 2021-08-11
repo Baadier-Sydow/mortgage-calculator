@@ -36,3 +36,11 @@ export class MortgageCalculatorFormComponent implements OnInit {
     console.log(this.mortgageCalculatorService.calculateTermFromPrice(this.price, this.downPayment, this.interestRate, this.term));
   }
 
+  handleTermUpdate(updatedTerm: number) {
+    this.term = updatedTerm;
+  }
+
+  setDefaultTermValues(){
+
+  }
+}

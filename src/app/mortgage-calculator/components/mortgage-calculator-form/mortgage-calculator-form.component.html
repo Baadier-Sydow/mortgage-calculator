@@ -1,1 +1,17 @@
+<app-house-display [price]="price"></app-house-display>
+<app-monthly-repayment [defaultTermAmount]="defaultTermAmount" [defaultTermMax]="defaultTermMax" (termChange)="handleTermUpdate($event)"></app-monthly-repayment>
 <app-price-range [defaultPrice]="price" [defaultPriceMax]="defaultPriceMax" (priceChange)="handlePriceUpdate($event)"></app-price-range>
+<ion-item>
+    <ion-label position="stacked">Down Payment</ion-label>
+    <ion-input [value]="downPayment" type="number" (ionChange)="handlePriceUpdate(this.price)"></ion-input>
+</ion-item>
+<ion-item>
+    <ion-label position="stacked">Length of Loan</ion-label>
+    <ion-select placeholder="Select length of loan" [(ngModel)]="term" (ionChange)="handlePriceUpdate(this.price)">
+      <ion-select-option *ngFor="let termOption of defaultTermOptions" [value]="termOption">{{ termOption }}</ion-select-option>
+    </ion-select>
+</ion-item>
+<ion-item>
+    <ion-label position="stacked">Interest Rate</ion-label>
+    <ion-input [value]="interestRate" type="number" step="0.1" (ionChange)="handlePriceUpdate(this.price)"></ion-input>
+</ion-item>
