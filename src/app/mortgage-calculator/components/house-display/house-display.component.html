@@ -1,0 +1,5 @@
+<ion-img src="assets/images/xs.png" *ngIf="price <= extraSmallThreshold || !price"></ion-img>
+<ion-img src="assets/images/s.png" *ngIf="price > extraSmallThreshold && price <= smallThreshold"></ion-img>
+<ion-img src="assets/images/m.png" *ngIf="price > smallThreshold && price <= mediumThreshold"></ion-img>
+<ion-img src="assets/images/l.png" *ngIf="price > mediumThreshold && price <= largeThreshold"></ion-img>
+<ion-img src="assets/images/xl.png" *ngIf="price > largeThreshold"></ion-img>
