@@ -1,0 +1,8 @@
+<ion-item>
+  <ion-label position="stacked">Estimated Monthly Payment</ion-label>
+  <ion-input [value]="termAmount" (ionChange)="updateTerm($event)" [min]="priceMin" [max]="priceMax" type="number"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-range [(ngModel)]="termAmount" (ionChange)="updateTerm($event)" [min]="priceMin" [max]="priceMax" mode="ios" [debounce]="rangeDebounce"></ion-range>
+</ion-item>
