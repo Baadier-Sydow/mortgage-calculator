@@ -56,5 +56,7 @@ export class MortgageCalculatorFormComponent implements OnInit {
     );
   }
 
+  setMaxDownPayment(){
+    this.defaultDownPaymentMax = this.defaultPriceMax - 1;
   }
 }
