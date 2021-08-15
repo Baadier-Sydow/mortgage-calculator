@@ -3,7 +3,7 @@
 <app-price-range [defaultPrice]="price" [defaultPriceMax]="defaultPriceMax" (priceChange)="handlePriceUpdate($event)"></app-price-range>
 <ion-item>
     <ion-label position="stacked">Down Payment</ion-label>
-    <ion-input [value]="downPayment" type="number" (ionChange)="handlePriceUpdate(this.price)"></ion-input>
+    <ion-input [value]="downPayment" type="number" (ionChange)="handlePriceUpdate(this.price)" [max]="defaultDownPaymentMax"></ion-input>
 </ion-item>
 <ion-item>
     <ion-label position="stacked">Length of Loan</ion-label>
