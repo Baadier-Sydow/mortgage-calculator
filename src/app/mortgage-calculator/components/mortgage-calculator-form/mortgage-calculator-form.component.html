@@ -1,17 +1,35 @@
 <app-house-display [price]="price"></app-house-display>
-<app-monthly-repayment [termRepaymentAmount]="termRepaymentAmount" [termRepaymentMax]="termRepaymentMax" (termChange)="handleTermUpdate($event)"></app-monthly-repayment>
-<app-price-range [defaultPrice]="price" [defaultPriceMax]="defaultPriceMax" (priceChange)="handlePriceUpdate($event)"></app-price-range>
+
 <ion-item>
-    <ion-label position="stacked">Down Payment</ion-label>
-    <ion-input [value]="downPayment" type="number" (ionChange)="handlePriceUpdate(this.price)" [max]="defaultDownPaymentMax"></ion-input>
+  <ion-label position="stacked">Estimated Monthly Payment</ion-label>
+  <ion-input [value]="termRepaymentAmount" (ionChange)="handleTermUpdate()" [min]="priceMin" [max]="termRepaymentMax" type="number"></ion-input>
 </ion-item>
 <ion-item>
+  <ion-range [value]="termRepaymentAmount" (ionChange)="handleTermUpdate()" [min]="priceMin" [max]="termRepaymentMax" mode="ios" [debounce]="rangeDebounce"></ion-range>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Home Price</ion-label>
+  <ion-input [value]="price" (ionChange)="handlePriceUpdate($event)" [min]="priceMin" [max]="defaultPriceMax" type="number" step="priceStep"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-range [value]="price" (ionChange)="handlePriceUpdate($event)" [min]="priceMin" [max]="defaultPriceMax" mode="ios" [debounce]="rangeDebounce"></ion-range>
+</ion-item>
+
+<ion-item>
+    <ion-label position="stacked">Down Payment</ion-label>
+    <ion-input [value]="downPayment" type="number" (ionChange)="handlePriceUpdate()" [max]="defaultDownPaymentMax"></ion-input>
+</ion-item>
+
+<ion-item>
     <ion-label position="stacked">Length of Loan</ion-label>
-    <ion-select placeholder="Select length of loan" [(ngModel)]="term" (ionChange)="handlePriceUpdate(this.price)">
+    <ion-select placeholder="Select length of loan" [(ngModel)]="term" (ionChange)="handlePriceUpdate()">
       <ion-select-option *ngFor="let termOption of defaultTermOptions" [value]="termOption">{{ termOption }}</ion-select-option>
     </ion-select>
 </ion-item>
+
 <ion-item>
     <ion-label position="stacked">Interest Rate</ion-label>
-    <ion-input [value]="interestRate" type="number" step="0.1" (ionChange)="handlePriceUpdate(this.price)"></ion-input>
+    <ion-input [value]="interestRate" type="number" step="0.1" (ionChange)="handlePriceUpdate()"></ion-input>
 </ion-item>

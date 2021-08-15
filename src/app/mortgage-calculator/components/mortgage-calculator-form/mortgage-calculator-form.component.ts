@@ -13,11 +13,16 @@ export class MortgageCalculatorFormComponent implements OnInit {
   @Input() defaultTermOptions: Array<number>;
   @Input() defaultDownPayment: number;
 
-  price: number;
   downPayment: number;
   term: number;
   interestRate: number;
+
+  price: number;
   defaultPriceMax = 1000000;
+  priceMin = 10000;
+  priceStep = 10000;
+  rangeDebounce = 0;
+
   termRepaymentAmount: number;
   termRepaymentMax: number;
   defaultDownPaymentMax: number;
@@ -33,30 +38,29 @@ export class MortgageCalculatorFormComponent implements OnInit {
     this.setMaxDownPayment();
   }
 
-  handlePriceUpdate(updatedPrice: number) {
-    this.price = Number(updatedPrice);
-    const repaymentAmount =
-    this.termRepaymentAmount =
+  handlePriceUpdate(updatedPrice?) {
+    if(updatedPrice) {
+      this.price = Number(updatedPrice.detail.value);
+    }
+    const updatedRepaymentAmount =
       this.mortgageCalculatorService.calculateTermFromPrice(
         this.price,
         this.downPayment,
         this.interestRate,
         this.term
       );
-    const fullLoan = this.mortgageCalculatorService.calculatePriceFromTerm(repaymentAmount, this.term, this.interestRate);
+    this.termRepaymentAmount = updatedRepaymentAmount;
   }
 
-  handleTermUpdate(updatedTerm: number) {
-    this.term = updatedTerm;
+  handleTermUpdate() {
+    // const fullLoan = this.mortgageCalculatorService.calculatePriceFromTerm(
+    //   this.termRepaymentAmount,
+    //   this.term,
+    //   this.interestRate
+    // );
+    // this.price = fullLoan;
   }
 
-  setDefaultTermValues(){
-    this.defaultTermMax = this.mortgageCalculatorService.calculateTermFromPrice(
-      this.defaultPriceMax,
-      0,
-      this.interestRate,
-      Math.min(...this.defaultTermOptions)
-    );
   setDefaultTermValues() {
     this.termRepaymentMax =
       this.mortgageCalculatorService.calculateTermFromPrice(
@@ -74,7 +78,6 @@ export class MortgageCalculatorFormComponent implements OnInit {
       );
   }
 
-  setMaxDownPayment(){
   setMaxDownPayment() {
     this.defaultDownPaymentMax = this.defaultPriceMax - 1;
   }
