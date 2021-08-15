@@ -17,7 +17,7 @@ export class MortgageCalculatorFormComponent implements OnInit {
   downPayment: number;
   term: number;
   interestRate: number;
-  defaultPriceMax = 2000000;
+  defaultPriceMax = 1000000;
   defaultTermAmount: number;
   defaultTermMax: number;
 
