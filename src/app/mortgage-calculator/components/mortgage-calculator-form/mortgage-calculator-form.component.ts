@@ -57,6 +57,21 @@ export class MortgageCalculatorFormComponent implements OnInit {
       this.interestRate,
       Math.min(...this.defaultTermOptions)
     );
+  setDefaultTermValues() {
+    this.termRepaymentMax =
+      this.mortgageCalculatorService.calculateTermFromPrice(
+        this.defaultPriceMax,
+        0,
+        this.interestRate,
+        Math.min(...this.defaultTermOptions)
+      );
+    this.termRepaymentAmount =
+      this.mortgageCalculatorService.calculateTermFromPrice(
+        this.price,
+        this.downPayment,
+        this.interestRate,
+        this.term
+      );
   }
 
   setMaxDownPayment(){
