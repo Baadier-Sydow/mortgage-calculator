@@ -1,5 +1,5 @@
 <app-house-display [price]="price"></app-house-display>
-<app-monthly-repayment [defaultTermAmount]="defaultTermAmount" [defaultTermMax]="defaultTermMax" (termChange)="handleTermUpdate($event)"></app-monthly-repayment>
+<app-monthly-repayment [termRepaymentAmount]="termRepaymentAmount" [termRepaymentMax]="termRepaymentMax" (termChange)="handleTermUpdate($event)"></app-monthly-repayment>
 <app-price-range [defaultPrice]="price" [defaultPriceMax]="defaultPriceMax" (priceChange)="handlePriceUpdate($event)"></app-price-range>
 <ion-item>
     <ion-label position="stacked">Down Payment</ion-label>

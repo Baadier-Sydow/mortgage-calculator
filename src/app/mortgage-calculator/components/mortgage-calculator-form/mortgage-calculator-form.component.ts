@@ -18,8 +18,8 @@ export class MortgageCalculatorFormComponent implements OnInit {
   term: number;
   interestRate: number;
   defaultPriceMax = 1000000;
-  defaultTermAmount: number;
-  defaultTermMax: number;
+  termRepaymentAmount: number;
+  termRepaymentMax: number;
   defaultDownPaymentMax: number;
 
   constructor(private mortgageCalculatorService: MortgageCalculatorService) {}
@@ -36,6 +36,7 @@ export class MortgageCalculatorFormComponent implements OnInit {
   handlePriceUpdate(updatedPrice: number) {
     this.price = Number(updatedPrice);
     const repaymentAmount =
+    this.termRepaymentAmount =
       this.mortgageCalculatorService.calculateTermFromPrice(
         this.price,
         this.downPayment,
