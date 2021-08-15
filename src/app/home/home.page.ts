@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 export class HomePage {
   defaultPrice = 500000;
   defaultInterestRate = 3.0;
-  defaultTerm = 5;
+  defaultTerm = 30;
   defaultTermOptions = [5, 10, 15, 20, 25, 30];
-  defaultDownPayment = 100000;
+  defaultDownPayment = 50000;
 
   constructor() {}
 }
