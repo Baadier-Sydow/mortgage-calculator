@@ -20,6 +20,7 @@ export class MortgageCalculatorFormComponent implements OnInit {
   defaultPriceMax = 1000000;
   defaultTermAmount: number;
   defaultTermMax: number;
+  defaultDownPaymentMax: number;
 
   constructor(private mortgageCalculatorService: MortgageCalculatorService) {}
 
@@ -29,6 +30,7 @@ export class MortgageCalculatorFormComponent implements OnInit {
     this.term = this.defaultTerm;
     this.interestRate = this.defaultInterestRate;
     this.setDefaultTermValues();
+    this.setMaxDownPayment();
   }
 
   handlePriceUpdate(updatedPrice: number) {
