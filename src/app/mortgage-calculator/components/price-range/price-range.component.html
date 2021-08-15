@@ -4,5 +4,5 @@
 </ion-item>
 
 <ion-item>
-  <ion-range [(ngModel)]="price" (ionChange)="updatePrice($event)" [min]="priceMin" [max]="defaultPriceMax" mode="ios" [debounce]="rangeDebounce"></ion-range>
+  <ion-range [value]="price" (ionChange)="updatePrice($event)" [min]="priceMin" [max]="defaultPriceMax" mode="ios" [debounce]="rangeDebounce"></ion-range>
 </ion-item>
