@@ -1,8 +1,0 @@
-<ion-item>
-  <ion-label position="stacked">Estimated Monthly Payment</ion-label>
-  <ion-input [value]="termRepaymentAmount" (ionChange)="updateTerm($event)" [min]="priceMin" [max]="termRepaymentMax" type="number"></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-range [value]="termRepaymentAmount" (ionChange)="updateTerm($event)" [min]="priceMin" [max]="termRepaymentMax" mode="ios" [debounce]="rangeDebounce"></ion-range>
-</ion-item>
