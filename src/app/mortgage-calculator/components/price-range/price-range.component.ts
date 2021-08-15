@@ -12,7 +12,6 @@ export class PriceRangeComponent implements OnInit {
 
   price: number;
   priceMin = 10000;
-  priceMax: number;
   priceStep = 10000;
   rangeDebounce = 0;
 
@@ -20,22 +19,10 @@ export class PriceRangeComponent implements OnInit {
 
   ngOnInit() {
     this.price = this.defaultPrice;
-    this.priceMax = this.defaultPriceMax;
   }
 
   updatePrice(updatedPrice) {
     this.price = updatedPrice.detail.value;
-    this.validateMaxPriceRange();
     this.priceChange.emit(this.price);
   }
-
-  validateMaxPriceRange(){
-    if(this.price > this.priceMax){
-      this.priceMax = this.price;
-    }
-    if((this.price < this.defaultPriceMax) && (this.defaultPriceMax !== this.priceMax)){
-      this.priceMax = this.defaultPriceMax;
-    }
-  }
-
 }

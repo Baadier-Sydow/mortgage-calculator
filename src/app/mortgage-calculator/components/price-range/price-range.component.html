@@ -1,8 +1,8 @@
 <ion-item>
   <ion-label position="stacked">Home Price</ion-label>
-  <ion-input [value]="price" (ionChange)="updatePrice($event)" [min]="priceMin" [max]="priceMax" type="number" step="priceStep"></ion-input>
+  <ion-input [value]="price" (ionChange)="updatePrice($event)" [min]="priceMin" [max]="defaultPriceMax" type="number" step="priceStep"></ion-input>
 </ion-item>
 
 <ion-item>
-  <ion-range [(ngModel)]="price" (ionChange)="updatePrice($event)" [min]="priceMin" [max]="priceMax" mode="ios" [debounce]="rangeDebounce"></ion-range>
+  <ion-range [(ngModel)]="price" (ionChange)="updatePrice($event)" [min]="priceMin" [max]="defaultPriceMax" mode="ios" [debounce]="rangeDebounce"></ion-range>
 </ion-item>
