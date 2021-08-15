@@ -1,23 +1,40 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MortgageCalculatorService {
+  constructor() {}
 
-  constructor() { }
-
-  calculateTermFromPrice(price: number, downPayment: number, interestRate: number, term: number): number {
-    // M = P(r(1+r)^n / ((1+r)^n)-1))
-    // Extra bracket?
+  calculateTermFromPrice(
+    price: number,
+    downPayment: number,
+    annualInterestRate: number,
+    termYears: number
+  ): number {
     const principle = price - downPayment;
-    return Math.ceil(principle * (interestRate * (1 + interestRate) ** term / ((1 + interestRate) ** term) - 1 ) / interestRate);
+    const interestRate = annualInterestRate / 12;
+    const termMonths = termYears * 12;
+    return Math.ceil(
+      principle *
+        (interestRate *
+        (Math.pow(1 + interestRate, termMonths) /
+          (Math.pow(1 + interestRate, termMonths) - 1)))
+    );
   }
 
-  calculatePriceFromTerm(term: number, interestRate: number, termAmount: number): number {
-    // P = M/(r(1+r)^n / ((1+r)^n)-1))
-    // hmmm
-    const principle = termAmount / (interestRate * (1 + interestRate) ** term / ((1 + interestRate) ** term) - 1 );
-    return Math.ceil(principle);
+  calculatePriceFromTerm(
+    repaymentAmount: number,
+    termYears: number,
+    annualInterestRate: number,
+  ): number {
+    const interestRate = annualInterestRate / 12;
+    const termMonths = termYears * 12;
+    return Math.ceil(
+      repaymentAmount /
+        (interestRate *
+        (Math.pow(1 + interestRate, termMonths) /
+          (Math.pow(1 + interestRate, termMonths) - 1)))
+    );
   }
 }
